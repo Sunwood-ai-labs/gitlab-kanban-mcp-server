@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="200" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- 定義部分の拡張 -->
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FC6D26;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FCA326;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- 光るエフェクト -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- 波打つ線のパターン -->
+    <path id="wavePath" d="M 0 50 Q 200 0, 400 50 T 800 50" fill="none" />
+    
+    <!-- 歯車のシンボル -->
+    <symbol id="gear" viewBox="0 0 100 100">
+      <path d="M 50 0 L 55 20 A 35 35 0 0 1 80 35 L 100 30 L 85 50 L 100 70 L 80 65 A 35 35 0 0 1 55 80 L 50 100 L 45 80 A 35 35 0 0 1 20 65 L 0 70 L 15 50 L 0 30 L 20 35 A 35 35 0 0 1 45 20 Z" fill="white" opacity="0.8"/>
+    </symbol>
+  </defs>
+
+  <!-- 背景の角丸長方形 -->
+  <rect x="10" y="10" width="780" height="180" rx="20" ry="20" 
+        fill="url(#bg-gradient)" filter="url(#glow)">
+    <animate attributeName="opacity" values="0.8;1;0.8" dur="3s" repeatCount="indefinite" />
+  </rect>
+
+  <!-- 装飾的な波線 -->
+  <use href="#wavePath" stroke="white" stroke-width="2" opacity="0.3">
+    <animate attributeName="d" 
+             values="M 0 50 Q 200 0, 400 50 T 800 50;
+                     M 0 50 Q 200 100, 400 50 T 800 50;
+                     M 0 50 Q 200 0, 400 50 T 800 50"
+             dur="4s" repeatCount="indefinite" />
+  </use>
+
+  <!-- 回転する歯車 -->
+  <use href="#gear" x="40" y="40" width="40" height="40">
+    <animateTransform attributeName="transform"
+                      type="rotate"
+                      from="0 60 60"
+                      to="360 60 60"
+                      dur="10s"
+                      repeatCount="indefinite"/>
+  </use>
+  <use href="#gear" x="700" y="40" width="40" height="40">
+    <animateTransform attributeName="transform"
+                      type="rotate"
+                      from="360 720 60"
+                      to="0 720 60"
+                      dur="10s"
+                      repeatCount="indefinite"/>
+  </use>
+
+  <!-- メインタイトル -->
+  <text x="400" y="90" font-family="Arial, sans-serif" font-size="48" 
+        font-weight="bold" fill="white" text-anchor="middle" filter="url(#glow)">
+    GitLab Kanban MCP
+    <animate attributeName="y" values="90;95;90" dur="4s" repeatCount="indefinite" />
+  </text>
+
+  <!-- サブタイトル -->
+  <text x="400" y="130" font-family="Arial, sans-serif" font-size="24" 
+        fill="white" text-anchor="middle" opacity="0.9">
+    Streamline Your Workflow with MCP Integration
+    <animate attributeName="opacity" values="0.7;1;0.7" dur="3s" repeatCount="indefinite" />
+  </text>
+
+  <!-- 装飾的な点滅する丸 -->
+  <circle cx="60" cy="160" r="5" fill="white">
+    <animate attributeName="opacity" values="0.2;1;0.2" dur="2s" repeatCount="indefinite" />
+  </circle>
+  <circle cx="740" cy="160" r="5" fill="white">
+    <animate attributeName="opacity" values="1;0.2;1" dur="2s" repeatCount="indefinite" />
+  </circle>
+
+  <!-- 装飾的なライン -->
+  <line x1="100" y1="160" x2="700" y2="160" stroke="white" stroke-width="2" opacity="0.3">
+    <animate attributeName="opacity" values="0.3;0.6;0.3" dur="3s" repeatCount="indefinite" />
+  </line>
+</svg>
